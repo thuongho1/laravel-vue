@@ -82,4 +82,11 @@ class User extends Authenticatable
     {
         return $query->where('users.email', 'LIKE', "%$email%", 'or');
     }
+    /**
+     * Get the posts that belong to the user.
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

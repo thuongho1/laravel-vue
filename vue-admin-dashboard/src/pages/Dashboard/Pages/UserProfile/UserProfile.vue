@@ -15,9 +15,9 @@
 </template>
 
 <script>
-  import UserEditCard from "@/pages/Dashboard/Examples/UserProfile/EditProfileCard.vue";
-  import UserPasswordCard from "@/pages/Dashboard/Examples/UserProfile/EditPasswordCard.vue";
-  import UserProfileCard from "@/pages/Dashboard/Examples/UserProfile/UserProfileCard.vue";
+  import UserEditCard from "@/pages/Dashboard/Pages/UserProfile/EditProfileCard.vue";
+  import UserPasswordCard from "@/pages/Dashboard/Pages/UserProfile/EditPasswordCard.vue";
+  import UserProfileCard from "@/pages/Dashboard/Pages/UserProfile/UserProfileCard.vue";
 
   export default {
     name: "user-profile-example",

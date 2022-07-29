@@ -67,14 +67,6 @@ export default {
 
   methods: {
     async updateProfile() {
-      if (["1", "2", "3"].includes(this.user.id)) {
-        await this.$store.dispatch(
-          "alerts/error",
-          "You are not allowed not change data of default users."
-        );
-        return;
-      }
-
       try {
         await this.$store.dispatch("profile/update", this.user);
         await this.$store.dispatch(

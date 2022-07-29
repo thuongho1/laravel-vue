@@ -54,7 +54,9 @@ return [
     */
     'resources' => [
         'profile' => \App\Models\User::class,
-        'users' => \App\Models\User::class
+        'users' => \App\Models\User::class,
+        'posts' => \App\Models\Post::class,
+        'comments' => \App\Models\Comment::class,
     ],
 
     /*

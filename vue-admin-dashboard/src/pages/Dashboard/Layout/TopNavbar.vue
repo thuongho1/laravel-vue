@@ -20,29 +20,6 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </md-button>
-
-        <li class="button-container" style="margin-right: 10px">
-          <div class="">
-            <md-button
-              class="md-default md-block"
-              :href="documentationLink"
-              target="_blank"
-              >Documentation
-            </md-button>
-          </div>
-        </li>
-
-        <li class="button-container">
-          <div class="">
-            <md-button
-              class="md-success md-block"
-              :href="downloadUrl"
-              target="_blank"
-              >Download Now
-            </md-button>
-          </div>
-        </li>
-
         <div class="md-collapse">
           <div class="md-autocomplete">
             <md-autocomplete
@@ -131,10 +108,10 @@ export default {
       }
     },
     goToNotifications() {
-      this.$router.push({ name: "Notifications" });
+      this.$router.push({name: "Notifications"});
     },
     goToUsers() {
-      this.$router.push({ name: "User Profile" });
+      this.$router.push({name: "User Profile"});
     },
   },
 };

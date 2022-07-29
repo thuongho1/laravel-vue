@@ -18,133 +18,120 @@
         <sidebar-item
           v-if="$route.meta.rtlActive"
           :link="{
-            name: 'لوحة القيادةة',
             icon: 'dashboard',
-            path: '/dashboard',
+            path: '/admin',
           }"
         />
         <sidebar-item
           v-else
-          :link="{ name: 'Dashboard', icon: 'dashboard', path: '/dashboard' }"
+          :link="{ name: 'Dashboard', icon: 'dashboard', path: '/admin' }"
         />
-
-        <sidebar-item opened :link="{ name: 'Examples (API)', image: image }">
+        <sidebar-item :link="{ name: 'Users', icon: 'account_circle' }">
           <sidebar-item
-            :link="{ name: 'User Profile', path: '/examples/user-profile' }"
+            :link="{ name: 'User Profile', path: '/admin/user-profile' }"
           />
           <sidebar-item
             :link="{
               name: 'User Management',
-              path: '/examples/user-management/list-users',
+              path: '/admin/users',
+            }"
+          />
+        </sidebar-item>
+        <sidebar-item opened :link="{ name: 'Posts', path: '/admin/content/posts' , icon: 'article' }">
+          <sidebar-item
+            :link="{ name: 'Posts', path: '/admin/posts' }"
+          />
+          <sidebar-item
+            :link="{
+              name: 'Create Post',
+              path: '/admin/post/create',
             }"
           />
         </sidebar-item>
 
-        <sidebar-item
-          v-if="$route.meta.rtlActive"
-          :link="{
-            name: 'الجداول',
+        <sidebar-item :link="{ name: 'Content', icon: 'article', path: '/admin/content'}">
+        </sidebar-item>
+        <sidebar-item :link="{ name: 'Components', icon: 'source' }">
+          <sidebar-item
+            v-if="$route.meta.rtlActive"
+            :link="{
             icon: 'content_paste',
-            path: '/components/table',
+            path: '/admin/components/table',
           }"
-        />
-        <sidebar-item
-          :link="{
+          />
+          <sidebar-item
+            :link="{
             name: 'Table Lists',
             icon: 'content_paste',
-            path: '/components/table',
+            path: '/admin/components/table',
           }"
-        />
+          />
 
-        <sidebar-item
-          v-if="$route.meta.rtlActive"
-          :link="{
-            name: 'طباعة',
+          <sidebar-item
+            v-if="$route.meta.rtlActive"
+            :link="{
             icon: 'library_books',
-            path: '/components/typography',
+            path: '/admin/components/typography',
           }"
-        />
-        <sidebar-item
-          v-else
-          :link="{
+          />
+          <sidebar-item
+            v-else
+            :link="{
             name: 'Typography',
             icon: 'library_books',
-            path: '/components/typography',
+            path: '/admin/components/typography',
           }"
-        />
+          />
 
-        <sidebar-item
-          v-if="$route.meta.rtlActive"
-          :link="{
+          <sidebar-item
+            v-if="$route.meta.rtlActive"
+            :link="{
             name: 'الرموز',
             icon: 'bubble_chart',
-            path: '/components/icons',
+            path: '/admin/components/icons',
           }"
-        />
-        <sidebar-item
-          v-else
-          :link="{
+          />
+          <sidebar-item
+            v-else
+            :link="{
             name: 'Icons',
             icon: 'bubble_chart',
-            path: '/components/icons',
+            path: '/admin/components/icons',
           }"
-        />
+          />
 
-        <sidebar-item
-          v-if="$route.meta.rtlActive"
-          :link="{
-            name: 'خرائط جوجل',
+          <sidebar-item
+            v-if="$route.meta.rtlActive"
+            :link="{
             icon: 'place',
-            path: '/components/maps',
+            path: '/admin/components/maps',
           }"
-        />
-        <sidebar-item
-          v-else
-          :link="{ name: 'Maps', icon: 'place', path: '/components/maps' }"
-        />
+          />
+          <sidebar-item
+            v-else
+            :link="{ name: 'Maps', icon: 'place', path: '/admin/components/maps' }"
+          />
 
-        <sidebar-item
-          v-if="$route.meta.rtlActive"
-          :link="{
-            name: 'إخطارات',
+          <sidebar-item
+            v-if="$route.meta.rtlActive"
+            :link="{
             icon: 'notifications',
-            path: '/components/notifications',
+            path: '/admin/components/notifications',
           }"
-        />
-        <sidebar-item
-          v-else
-          :link="{
+          />
+          <sidebar-item
+            v-else
+            :link="{
             name: 'Notifications',
             icon: 'notifications',
-            path: '/components/notifications',
+            path: '/admin/components/notifications',
           }"
-        />
+          />
 
-        <sidebar-item
-          v-if="$route.meta.rtlActive"
-          :link="{ name: 'دعم رتل', icon: 'language', path: '/components/rtl' }"
-        />
-        <sidebar-item
-          v-else
-          :link="{
-            name: 'RTL Support',
-            icon: 'language',
-            path: '/components/rtl',
-          }"
-        />
+        </sidebar-item>
+
       </template>
 
-      <div style="width: 100%; position: absolute; bottom: 0; padding: 16px">
-        <md-button
-          v-if="sidebarMini"
-          class="md-button md-danger md-block"
-          href="https://www.creative-tim.com/product/vue-material-dashboard-laravel-pro"
-          target="_blanck"
-        >
-          <i class="fas fa-download" style="margin-right: 4px"></i>Upgrade to
-          PRO
-        </md-button>
-      </div>
     </side-bar>
 
     <div class="main-panel">
@@ -162,7 +149,7 @@
       <div :class="{ content: !$route.meta.hideContent }">
         <zoom-center-transition :duration="200" mode="out-in">
           <!-- your content here -->
-          <router-view />
+          <router-view/>
         </zoom-center-transition>
       </div>
       <content-footer v-if="!$route.meta.hideFooter"></content-footer>
@@ -266,9 +253,11 @@ $scaleSize: 0.95;
     opacity: 1;
   }
 }
+
 .main-panel .zoomIn {
   animation-name: zoomIn95;
 }
+
 @keyframes zoomOut95 {
   from {
     opacity: 1;
@@ -278,6 +267,7 @@ $scaleSize: 0.95;
     transform: scale3d($scaleSize, $scaleSize, $scaleSize);
   }
 }
+
 .main-panel .zoomOut {
   animation-name: zoomOut95;
 }

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import router from "@/router";
+import store from "@/store";
 import { VueAuthenticate } from "vue-authenticate";
 
 import axios from "axios";

@@ -19,10 +19,13 @@ import App from "./App.vue";
 import Chartist from "chartist";
 import VueAxios from "vue-axios";
 import DashboardPlugin from "./material-dashboard";
+import CKEditor from 'ckeditor4-vue';
+import filters from "./filters";
 
 // plugin setup
 Vue.use(DashboardPlugin);
 Vue.use(VueAxios, axios);
+Vue.use(CKEditor, filters);
 
 // router & store setup
 import router from "./router";

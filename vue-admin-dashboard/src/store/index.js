@@ -5,6 +5,7 @@ import auth from "./modules/auth";
 import alerts from "./modules/alerts-module";
 import profile from "./modules/profile-module";
 import users from "./modules/users-module";
+import posts from "./modules/posts-module";
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     auth,
     alerts,
     profile,
-    users
+    users,
+    posts
   }
 });

@@ -1,19 +1,6 @@
 <template>
   <div class="md-layout">
     <div class="md-layout-item md-size-100">
-      <div class="alert alert-danger" style="z-index: 9 !important">
-        <strong
-          >Add, Edit, Delete features are not functional. This is a PRO feature!
-          Click
-          <a
-            href="https://www.creative-tim.com/live/vue-material-dashboard-laravel-pro"
-            target="_blank"
-            id="pro-feature"
-            >here</a
-          >
-          to see the PRO product.</strong
-        >
-      </div>
       <md-card>
         <md-card-header class="md-card-header-icon md-card-header-green">
           <div class="card-icon">
@@ -52,14 +39,17 @@
 
             <md-table-row slot="md-table-row" slot-scope="{ item }">
               <md-table-cell md-label="Name" md-sort-by="name">{{
-                item.name
-              }}</md-table-cell>
+                  item.name
+                }}
+              </md-table-cell>
               <md-table-cell md-label="Email" md-sort-by="email">{{
-                item.email
-              }}</md-table-cell>
+                  item.email
+                }}
+              </md-table-cell>
               <md-table-cell md-label="Created At" md-sort-by="created_at">{{
-                item.created_at
-              }}</md-table-cell>
+                  item.created_at
+                }}
+              </md-table-cell>
               <md-table-cell md-label="Actions">
                 <md-button
                   class="md-icon-button md-raised md-round md-info"
@@ -82,19 +72,19 @@
           <div class="footer-table md-table">
             <table>
               <tfoot>
-                <tr>
-                  <th
-                    v-for="item in footerTable"
-                    :key="item.name"
-                    class="md-table-head"
-                  >
-                    <div class="md-table-head-container md-ripple md-disabled">
-                      <div class="md-table-head-label">
-                        {{ item }}
-                      </div>
+              <tr>
+                <th
+                  v-for="item in footerTable"
+                  :key="item.name"
+                  class="md-table-head"
+                >
+                  <div class="md-table-head-container md-ripple md-disabled">
+                    <div class="md-table-head-label">
+                      {{ item }}
                     </div>
-                  </th>
-                </tr>
+                  </div>
+                </th>
+              </tr>
               </tfoot>
             </table>
           </div>
