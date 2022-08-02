@@ -3,10 +3,12 @@
 namespace App\JsonApi\V1\Users;
 
 use App\Models\User;
+use CloudCreativity\LaravelJsonApi\Document\ResourceObject;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Neomerx\JsonApi\Contracts\Encoder\Parameters\EncodingParametersInterface;
 
 class Adapter extends AbstractAdapter
 {
@@ -24,6 +26,13 @@ class Adapter extends AbstractAdapter
      * @var array
      */
     protected $filterScopes = [];
+
+    /**
+     * Resource relationship fields that can be filled.
+     *
+     * @var array
+     */
+    protected $relationships = ['posts'];
 
     /**
      * Adapter constructor.
@@ -44,4 +53,11 @@ class Adapter extends AbstractAdapter
     {
         $this->filterWithScopes($query, $filters);
     }
+
+    protected function posts()
+    {
+        return $this->hasMany('posts');
+    }
+
+
 }

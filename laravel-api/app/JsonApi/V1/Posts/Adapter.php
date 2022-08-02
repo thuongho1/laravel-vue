@@ -25,6 +25,15 @@ class Adapter extends AbstractAdapter
      */
     protected $filterScopes = [];
 
+    protected $fillable = ['title', 'content', 'author_id'];
+
+    /**
+     * Resource relationship fields that can be filled.
+     *
+     * @var array
+     */
+    protected $relationships = ['author'];
+
     /**
      * Adapter constructor.
      *
@@ -43,6 +52,16 @@ class Adapter extends AbstractAdapter
     protected function filter($query, Collection $filters)
     {
         $this->filterWithScopes($query, $filters);
+    }
+
+    protected function author()
+    {
+        return $this->hasOneThrough();
+    }
+
+    protected function comments()
+    {
+        return $this->hasManyThrough();
     }
 
 }

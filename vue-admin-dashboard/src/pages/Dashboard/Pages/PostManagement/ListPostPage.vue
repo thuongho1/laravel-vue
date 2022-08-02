@@ -46,16 +46,19 @@
                   item.title
                 }}
               </md-table-cell>
-              <md-table-cell md-label="Owner ID" md-sort-by="owner_id">{{
-                  item.owner_id
+              <md-table-cell md-label="Author ID" md-sort-by="author_id">{{
+                  item.author_id
                 }}
-                <!--                {{ this.$store.getters['users/get' , item.owner_id]}}-->
               </md-table-cell>
               <md-table-cell md-label="Created At" md-sort-by="created_at">
-                {{ item.createdAt | formatDate }}
+                {{ item.created_at | formatDate }}
+              </md-table-cell>
+              <md-table-cell md-label="Update At" md-sort-by="update_at">
+                {{ item.update_at | formatDate }}
               </md-table-cell>
               <md-table-cell md-label="Actions">
                 <md-button
+                  :to="{ name: 'Update Post', params: {'id' : item.id}}"
                   class="md-icon-button md-raised md-round md-info"
 
                   style="margin: 0.2rem"
@@ -63,6 +66,7 @@
                   <md-icon>edit</md-icon>
                 </md-button>
                 <md-button
+                  :to="{ name: 'Delete Post', params: {'id' : item.id}}"
                   class="md-icon-button md-raised md-round md-danger"
 
                   style="margin: 0.2rem"
@@ -123,13 +127,13 @@ export default {
 
   data: () => ({
     table: [],
-    footerTable: ["Title", "Content", "Created At", "Actions"],
+    footerTable: ["ID", "Title", "Author", "Created At", "Update At", "Actions"],
 
     query: null,
 
     sortation: {
       field: "created_at",
-      order: "asc",
+      order: "desc",
     },
 
     pagination: {

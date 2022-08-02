@@ -19,7 +19,7 @@ class Schema extends SchemaProvider
      */
     public function getId($resource)
     {
-        return (string) $resource->getRouteKey();
+        return (string)$resource->getRouteKey();
     }
 
     /**
@@ -34,6 +34,15 @@ class Schema extends SchemaProvider
             'email' => $resource->email,
             'created_at' => optional($resource->created_at)->format("Y-m-d H:i:s"),
             'updated_at' => optional($resource->updated_at)->format("Y-m-d H:i:s"),
+        ];
+    }
+
+    public function getRelationships($user, $isPrimary, array $includeRelationships)
+    {
+        return [
+            'posts' => [
+                self::SHOW_RELATED => true,
+            ],
         ];
     }
 }

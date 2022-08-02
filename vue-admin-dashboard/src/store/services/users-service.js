@@ -1,8 +1,7 @@
 import qs from 'qs';
 import axios from 'axios';
 import Jsona from 'jsona';
-
-const url = process.env.VUE_APP_API_BASE_URL;
+import baseOptions from "./base-service";
 const jsona = new Jsona();
 
 function list(params) {
@@ -13,7 +12,7 @@ function list(params) {
     }
   };
 
-  return axios.get(`${url}/users`, options)
+  return axios.get(`${baseOptions.url}/users`, options)
     .then(response => {
       return {
         list: jsona.deserialize(response.data),
@@ -23,14 +22,9 @@ function list(params) {
 }
 
 function get(id) {
-  const options = {
-    headers: {
-      'Accept': 'application/vnd.api+json',
-      'Content-Type': 'application/vnd.api+json',
-    }
-  };
+  const options = {headers: baseOptions.headers};
 
-  return axios.get(`${url}/users/${id}`, options)
+  return axios.get(`${baseOptions.url}/users/${id}`, options)
     .then(response => {
       let user = jsona.deserialize(response.data);
       delete user.links;
@@ -44,14 +38,9 @@ function add(user) {
     includeNames: null
   });
 
-  const options = {
-    headers: {
-      'Accept': 'application/vnd.api+json',
-      'Content-Type': 'application/vnd.api+json',
-    }
-  };
+  const options = {headers: baseOptions.headers};
 
-  return axios.post(`${url}/users`, payload, options)
+  return axios.post(`${baseOptions.url}/users`, payload, options)
     .then(response => {
       return jsona.deserialize(response.data);
     });
@@ -63,35 +52,25 @@ function update(user) {
     includeNames: []
   });
 
-  const options = {
-    headers: {
-      'Accept': 'application/vnd.api+json',
-      'Content-Type': 'application/vnd.api+json',
-    }
-  };
+  const options = {headers: baseOptions.headers};
 
-  return axios.patch(`${url}/users/${user.id}`, payload, options)
+  return axios.patch(`${baseOptions.url}/users/${user.id}`, payload, options)
     .then(response => {
       return jsona.deserialize(response.data);
     });
 }
 
 function destroy(id) {
-  const options = {
-    headers: {
-      'Accept': 'application/vnd.api+json',
-      'Content-Type': 'application/vnd.api+json',
-    }
-  };
+  const options = {headers: baseOptions.headers};
 
-  return axios.delete(`${url}/users/${id}`, options);
+  return axios.delete(`${baseOptions.url}/users/${id}`, options);
 }
 
 function upload(user, image) {
   const bodyFormData = new FormData();
   bodyFormData.append('attachment', image);
 
-  return axios.post(`${url}/uploads/users/${user.id}/profile-image`, bodyFormData)
+  return axios.post(`${baseOptions.url}/uploads/users/${user.id}/profile-image`, bodyFormData)
     .then(response => {
       return response.data.url;
     });

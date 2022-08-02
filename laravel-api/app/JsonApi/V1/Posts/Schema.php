@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\V1\Posts;
 
+use App\Models\User;
 use Neomerx\JsonApi\Schema\SchemaProvider;
 
 class Schema extends SchemaProvider
@@ -19,7 +20,7 @@ class Schema extends SchemaProvider
      */
     public function getId($resource)
     {
-        return (string) $resource->getRouteKey();
+        return (string)$resource->getRouteKey();
     }
 
     /**
@@ -32,9 +33,25 @@ class Schema extends SchemaProvider
         return [
             'title' => $resource->title,
             'content' => $resource->content,
-            'owner_id' => $resource->owner_id,
-            'createdAt' => $resource->created_at,
-            'updatedAt' => $resource->updated_at,
+            'author_id' => $resource->author_id,
+            'created_at' => $resource->created_at,
+            'update_at' => $resource->updated_at,
+        ];
+    }
+
+    public function getRelationships($post, $isPrimary, array $includeRelationships)
+    {
+        return [
+            'author' => [
+                self::DATA => function () use ($post) {
+//            $user = User::load([$post->author]);
+                    $author = $post->author;
+                    return $author;
+                },
+            ],
+            'comments' => [
+                self::SHOW_RELATED => true,
+            ],
         ];
     }
 }

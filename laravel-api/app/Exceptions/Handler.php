@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 use Illuminate\Validation\ValidationException;
 use Neomerx\JsonApi\Exceptions\JsonApiException;
@@ -150,5 +152,13 @@ class Handler extends ExceptionHandler
         );
     }
 
+    protected function renderHttpException(HttpExceptionInterface $e)
+    {
+        if ($e->getStatusCode() === 500 && env('APP_DEBUG') === true) {
+            // Display Laravel's default error message with appropriate error information
+            return $this->convertExceptionToResponse($e);
+        }
+        return parent::renderHttpException($e); // Continue as normal
+    }
 
 }

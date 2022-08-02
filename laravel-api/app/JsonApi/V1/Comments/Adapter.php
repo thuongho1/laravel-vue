@@ -45,4 +45,14 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
+    protected function author()
+    {
+        return $this->hasOneThrough();
+    }
+
+    protected function post()
+    {
+        return $this->hasOneThrough();
+    }
+
 }

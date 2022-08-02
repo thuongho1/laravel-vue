@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api\V1\Posts;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required'],
-            'owner_id' => ['required', 'exists:users']
+            'author_id' => ['required']
         ];
     }
 }

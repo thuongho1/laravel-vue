@@ -2,6 +2,8 @@
 
 namespace App\JsonApi\V1\Posts;
 
+use CloudCreativity\LaravelJsonApi\Eloquent\HasMany;
+use CloudCreativity\LaravelJsonApi\Eloquent\HasOne;
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
 
 class Validators extends AbstractValidators
@@ -43,7 +45,14 @@ class Validators extends AbstractValidators
     protected function rules($record, array $data): array
     {
         return [
-            //
+            'title' => 'required',
+            'content' => 'required',
+            'author.id' => ["required",'exists:users,id'],
+//            'author' => [
+//                'required',
+//                new HasOne('users'),
+//            ],
+//            'comments' => new HasMany('comments'),
         ];
     }
 

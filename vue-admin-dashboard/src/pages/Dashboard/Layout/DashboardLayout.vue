@@ -28,9 +28,6 @@
         />
         <sidebar-item :link="{ name: 'Users', icon: 'account_circle' }">
           <sidebar-item
-            :link="{ name: 'User Profile', path: '/admin/user-profile' }"
-          />
-          <sidebar-item
             :link="{
               name: 'User Management',
               path: '/admin/users',
@@ -208,6 +205,7 @@ export default {
   },
   data() {
     return {
+      user: null,
       sidebarBackgroundColor: "black",
       sidebarBackground: "green",
       sidebarBackgroundImage:
@@ -217,7 +215,15 @@ export default {
       image: process.env.VUE_APP_BASE_URL + "/img/laravel-vue.svg",
     };
   },
+
+  created() {
+    this.getProfile();
+  },
   methods: {
+    async getProfile() {
+      await this.$store.dispatch("profile/me")
+      this.user = await this.$store.getters["profile/me"]
+    },
     toggleSidebar() {
       if (this.$sidebar.showSidebar) {
         this.$sidebar.displaySidebar(false);

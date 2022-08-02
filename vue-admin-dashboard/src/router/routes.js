@@ -10,7 +10,6 @@ import UserProfile from "@/pages/Dashboard/Pages/UserProfile/UserProfile.vue";
 import ListUserPage from "@/pages/Dashboard/Pages/UserManagement/ListUserPage.vue";
 
 // Pages
-import RtlSupport from "@/pages/Dashboard/Pages/RtlSupport.vue";
 import Login from "@/pages/Dashboard/Pages/Login.vue";
 import Register from "@/pages/Dashboard/Pages/Register.vue";
 
@@ -22,6 +21,9 @@ import Typography from "@/pages/Dashboard/Components/Typography.vue";
 
 // Posts pages
 import CreatePost from "@/pages/Dashboard/Pages/PostManagement/CreatePostPage.vue";
+import UpdatePost from "@/pages/Dashboard/Pages/PostManagement/UpdatePostPage.vue";
+import DeletePost from "@/pages/Dashboard/Pages/PostManagement/DeletePostPage.vue";
+
 import ListPostPage from "@/pages/Dashboard/Pages/PostManagement/ListPostPage.vue";
 
 
@@ -35,7 +37,7 @@ import FullScreenMap from "@/pages/Dashboard/Maps/FullScreenMap.vue";
 import auth from "@/middleware/auth";
 import guest from "@/middleware/guest";
 
-let adminMenu = {
+let postMenu = {
   path: "/admin/posts",
   component: DashboardLayout,
   name: "Posts",
@@ -50,6 +52,20 @@ let adminMenu = {
       path: "/admin/post/create",
       name: "Create Post",
       components: {default: CreatePost},
+      meta: {middleware: auth}
+    },
+    {
+      path: "/admin/post/update/:id",
+      props: {default: true},
+      name: "Update Post",
+      components: {default: UpdatePost},
+      meta: {middleware: auth}
+    },
+    {
+      path: "/admin/post/delete/:id",
+      props: {default: true},
+      name: "Delete Post",
+      components: {default: DeletePost},
       meta: {middleware: auth}
     },
   ]
@@ -95,14 +111,6 @@ let componentsMenu = {
       components: {default: Notifications},
       meta: {middleware: auth}
     },
-    {
-      path: "rtl",
-      meta: {
-        rtlActive: true,
-        middleware: auth
-      },
-      components: {default: RtlSupport}
-    }
   ]
 };
 
@@ -168,7 +176,7 @@ const routes = [
   },
   componentsMenu,
   userMenu,
-  adminMenu,
+  postMenu,
   authPages
 ];
 

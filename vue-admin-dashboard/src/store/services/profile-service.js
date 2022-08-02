@@ -1,11 +1,10 @@
 import axios from 'axios';
 import Jsona from 'jsona';
-
-const url = process.env.VUE_APP_API_BASE_URL;
+import baseOptions from "./base-service";
 const jsona = new Jsona();
 
 function get() {
-  return axios.get(`${url}/me`)
+  return axios.get(`${baseOptions.url}/me`)
     .then(response => {
       return {
         list: jsona.deserialize(response.data),
@@ -21,14 +20,9 @@ function update(profile) {
     includeNames: []
   });
 
-  const options = {
-    headers: {
-      'Accept': 'application/vnd.api+json',
-      'Content-Type': 'application/vnd.api+json',
-    }
-  };
+  const options = {headers: baseOptions.headers};
 
-  return axios.patch(`${url}/me`, payload, options)
+  return axios.patch(`${baseOptions.url}/me`, payload, options)
     .then(response => {
       return jsona.deserialize(response.data);
     });

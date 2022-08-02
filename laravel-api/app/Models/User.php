@@ -55,7 +55,7 @@ class User extends Authenticatable
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param string $token
      * @return void
      */
     public function sendPasswordResetNotification($token)
@@ -82,11 +82,20 @@ class User extends Authenticatable
     {
         return $query->where('users.email', 'LIKE', "%$email%", 'or');
     }
+
     /**
      * Get the posts that belong to the user.
      */
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'author_id');
+    }
+
+    /**
+     * Get the comments that belong to the user.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'author_id');
     }
 }

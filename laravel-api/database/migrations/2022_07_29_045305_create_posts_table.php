@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('content');
-//            $table->unsignedBigInteger('owner_id');
-            $table->foreignId('owner_id')->constrained('users')
+            $table->foreignId('author_id')->constrained('users')
                 ->nullable();
             $table->timestamps();
         });

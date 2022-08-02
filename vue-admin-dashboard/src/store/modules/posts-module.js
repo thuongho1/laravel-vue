@@ -29,7 +29,10 @@ const actions = {
 
   get({commit, dispatch}, params) {
     return service.get(params)
-      .then((post) => { commit('SET_RESOURCE', post); });
+      .then((post) => { commit('SET_RESOURCE', post); })
+      .catch(() => {
+        commit('SET_RESOURCE', null);
+      });
   },
 
   add({commit, dispatch}, params) {
