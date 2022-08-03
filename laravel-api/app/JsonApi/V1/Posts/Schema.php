@@ -33,9 +33,10 @@ class Schema extends SchemaProvider
         return [
             'title' => $resource->title,
             'content' => $resource->content,
-            'author_id' => $resource->author_id,
-            'created_at' => $resource->created_at,
-            'update_at' => $resource->updated_at,
+            'status' => $resource->status,
+            'userId' => $resource->user_id,
+            'createdAt' => $resource->created_at,
+            'updateAt' => $resource->updated_at,
         ];
     }
 
@@ -44,13 +45,20 @@ class Schema extends SchemaProvider
         return [
             'author' => [
                 self::DATA => function () use ($post) {
-//            $user = User::load([$post->author]);
                     $author = $post->author;
                     return $author;
                 },
             ],
             'comments' => [
                 self::SHOW_RELATED => true,
+            ],
+            'ratings' => [
+                self::SHOW_RELATED => true,
+                self::META => function () use ($post) {
+                    return [
+                        'avg' => $post->rateAvg,
+                    ];
+                },
             ],
         ];
     }

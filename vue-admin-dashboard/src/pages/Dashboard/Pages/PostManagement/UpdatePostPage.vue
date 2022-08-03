@@ -75,15 +75,15 @@ export default {
     async updatePost() {
       const post = {
         id: this.post.id,
-        // author_id: this.post.author_id,
+        // user_id: this.post.user_id,
         type: "posts",
         title: this.post.title,
         content: this.post.content,
-        "author": {
+        "user": {
           type: "users",
-          id: this.post.author_id.toString(),
+          id: this.post.user_id.toString(),
         },
-        relationshipNames: ['author']
+        relationshipNames: ['user']
       }
 
       try {

@@ -18,13 +18,10 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
-        $author = User::all()->random();
-        $post = Post::all()->random();
         return [
-            'title' => 'Comment on ' . $post->getAttribute('title') . ' by user ' . $author->getAttribute('name'),
+            'title' => $this->faker->title,
             'content' => '<p>' . $this->faker->paragraph() . '</p>',
-            'author_id' => $author->id,
-            'post_id' => $post->id,
+            'user_id' => 1,
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\V1\Posts;
 
+use App\Models\User;
 use CloudCreativity\LaravelJsonApi\Eloquent\HasMany;
 use CloudCreativity\LaravelJsonApi\Eloquent\HasOne;
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
@@ -32,7 +33,16 @@ class Validators extends AbstractValidators
      *      the allowed filters, an empty array for none allowed, or null to allow all.
      */
     protected $allowedFilteringParameters = [];
-
+    /**
+     * @param \App\Models\Post $record
+     * @return iterable
+     */
+    protected function existingRelationships($record): iterable
+    {
+        return [
+            'user' => $record->user,
+        ];
+    }
     /**
      * Get resource validation rules.
      *
@@ -47,10 +57,15 @@ class Validators extends AbstractValidators
         return [
             'title' => 'required',
             'content' => 'required',
-            'author.id' => ["required",'exists:users,id'],
-//            'author' => [
+            'user.id' => 'exists:users,id',
+//            'user' => [
 //                'required',
-//                new HasOne('users'),
+//                new HasOne('user_id'),
+//            ],
+//            'user.id' => ["required",'exists:users,id'],
+//            'user' => [
+//                'required',
+//                new HasOne('user'),
 //            ],
 //            'comments' => new HasMany('comments'),
         ];

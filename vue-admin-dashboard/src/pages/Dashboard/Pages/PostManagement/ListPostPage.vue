@@ -46,15 +46,15 @@
                   item.title
                 }}
               </md-table-cell>
-              <md-table-cell md-label="Author ID" md-sort-by="author_id">{{
-                  item.author_id
+              <md-table-cell md-label="user ID" md-sort-by="user_id">{{
+                  item.user_id
                 }}
               </md-table-cell>
-              <md-table-cell md-label="Created At" md-sort-by="created_at">
-                {{ item.created_at | formatDate }}
+              <md-table-cell md-label="Created At" md-sort-by="createdAt">
+                {{ item.createdAt | formatDate }}
               </md-table-cell>
-              <md-table-cell md-label="Update At" md-sort-by="update_at">
-                {{ item.update_at | formatDate }}
+              <md-table-cell md-label="Update At" md-sort-by="updatedAt">
+                {{ item.updatedAt | formatDate }}
               </md-table-cell>
               <md-table-cell md-label="Actions">
                 <md-button
@@ -127,12 +127,12 @@ export default {
 
   data: () => ({
     table: [],
-    footerTable: ["ID", "Title", "Author", "Created At", "Update At", "Actions"],
+    footerTable: ["ID", "Title", "user", "Created At", "Update At", "Actions"],
 
     query: null,
 
     sortation: {
-      field: "created_at",
+      field: "createdAt",
       order: "desc",
     },
 

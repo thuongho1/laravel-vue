@@ -34,19 +34,16 @@
             }"
           />
         </sidebar-item>
-        <sidebar-item opened :link="{ name: 'Posts', path: '/admin/content/posts' , icon: 'article' }">
+        <sidebar-item :link="{ name: 'Content', icon: 'article', path: '/admin/content'}">
           <sidebar-item
             :link="{ name: 'Posts', path: '/admin/posts' }"
           />
           <sidebar-item
             :link="{
-              name: 'Create Post',
-              path: '/admin/post/create',
+              name: 'Comments',
+              path: '/admin/comments',
             }"
           />
-        </sidebar-item>
-
-        <sidebar-item :link="{ name: 'Content', icon: 'article', path: '/admin/content'}">
         </sidebar-item>
         <sidebar-item :link="{ name: 'Components', icon: 'source' }">
           <sidebar-item

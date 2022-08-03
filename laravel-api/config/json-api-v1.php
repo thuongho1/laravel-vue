@@ -57,6 +57,7 @@ return [
         'users' => \App\Models\User::class,
         'posts' => \App\Models\Post::class,
         'comments' => \App\Models\Comment::class,
+        'ratings' => \App\Models\Rating::class,
     ],
 
     /*

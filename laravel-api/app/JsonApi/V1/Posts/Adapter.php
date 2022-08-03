@@ -7,6 +7,7 @@ use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class Adapter extends AbstractAdapter
 {
@@ -25,14 +26,14 @@ class Adapter extends AbstractAdapter
      */
     protected $filterScopes = [];
 
-    protected $fillable = ['title', 'content', 'author_id'];
+//    protected $fillable = ['title', 'content', 'status'];
 
     /**
      * Resource relationship fields that can be filled.
      *
      * @var array
      */
-    protected $relationships = ['author'];
+    protected $relationships = ['users'];
 
     /**
      * Adapter constructor.
@@ -54,14 +55,14 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
-    protected function author()
+    protected function user()
     {
-        return $this->hasOneThrough();
+        return $this->hasOne();
     }
 
     protected function comments()
     {
-        return $this->hasManyThrough();
+        return $this->hasMany();
     }
 
 }

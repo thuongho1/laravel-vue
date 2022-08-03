@@ -18,12 +18,14 @@
                 <md-field class="md-invalid">
                   <label>Title</label>
                   <md-input v-model="title" type="text" aria-required="true" required/>
-                  <validation-error/>
+                  <validation-error :errors="apiValidationErrors.title"/>
                 </md-field>
                 <md-field class="md-invalid">
                   <ckeditor v-model="content" :config="editorConfig" required></ckeditor>
-                  <validation-error/>
+                  <validation-error :errors="apiValidationErrors.content"/>
                 </md-field>
+
+                <md-checkbox class="md-primary md-theme-demo-light" v-model="published">Published</md-checkbox>
               </div>
             </div>
           </md-card-content>
@@ -41,10 +43,10 @@
 </template>
 
 <script>
-import {ValidationError} from "@/components";
-import formMixin from "@/mixins/form-mixin";
-import CKEditor from 'ckeditor4-vue';
-import store from "@/store";
+import { ValidationError } from '@/components'
+import formMixin from '@/mixins/form-mixin'
+import CKEditor from 'ckeditor4-vue'
+import store from '@/store'
 // import DashboardLayout from "../../../Dashboard/Layout/DashboardLayout.vue";
 // import DashboardLayout from "@/pages/Dashboard/Layout/DashboardLayout.vue";
 //
@@ -55,19 +57,19 @@ import store from "@/store";
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
 
-  name: "create-post-page",
+  name: 'create-post-page',
   // props: {
   //   user: Object
   // },
 
-  components: {ValidationError, ckeditor: CKEditor.component},
+  components: { ValidationError, ckeditor: CKEditor.component },
 
   mixins: [formMixin],
 
   data: () => ({
     title: null,
     content: null,
-    // editor: ClassicEditor,
+    published: true,
     editorConfig: {
       // toolbar: [ [ 'Bold' ] ]
     }
@@ -75,37 +77,38 @@ export default {
   created() {
     // this.user = this.$store.getters.getProfile;
     // console.log(this.user);
-    this.getProfile();
+    this.getProfile()
   },
   methods: {
     async getProfile() {
-      await this.$store.dispatch("profile/me")
-      this.user = await this.$store.getters["profile/me"];
+      await this.$store.dispatch('profile/me')
+      this.user = await this.$store.getters['profile/me']
     },
 
     async createPost() {
       const post = {
-        author_id: this.user.id,
-        type: "posts",
+        // user_id: this.user.id,
+        type: 'posts',
         title: this.title,
         content: this.content,
-        "author": {
-          type: "users",
+        status: this.published ? 1 : 0,
+        'user': {
+          type: 'users',
           id: this.user.id,
         },
-        relationshipNames: ['author']
+        relationshipNames: ['user']
       }
 
       try {
-        await this.$store.dispatch("posts/add", post)
-        await this.$store.dispatch("alerts/error", "Post created successfully.")
-        this.$router.push({name: "List Posts"})
+        await this.$store.dispatch('posts/add', post)
+        await this.$store.dispatch('alerts/error', 'Post created successfully.')
+        this.$router.push({ name: 'List Posts' })
       } catch (e) {
-        await this.$store.dispatch("alerts/error", "Oops, something went wrong!")
+        await this.$store.dispatch('alerts/error', 'Oops, something went wrong!')
         this.setApiValidation(e.response.data.errors)
       }
 
     }
   }
-};
+}
 </script>

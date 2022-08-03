@@ -26,6 +26,11 @@ import DeletePost from "@/pages/Dashboard/Pages/PostManagement/DeletePostPage.vu
 
 import ListPostPage from "@/pages/Dashboard/Pages/PostManagement/ListPostPage.vue";
 
+// Comments pages
+import CreateComment from "@/pages/Dashboard/Pages/CommentManagement/CreateCommentPage.vue";
+import UpdateComment from "@/pages/Dashboard/Pages/CommentManagement/UpdateCommentPage.vue";
+import DeleteComment from "@/pages/Dashboard/Pages/CommentManagement/DeleteCommentPage.vue";
+import ListCommentPage from "@/pages/Dashboard/Pages/CommentManagement/ListCommentPage.vue";
 
 // TableList pages
 import RegularTables from "@/pages/Dashboard/Tables/RegularTables.vue";
@@ -70,7 +75,39 @@ let postMenu = {
     },
   ]
 };
-
+let commentMenu = {
+  path: "/admin/comments",
+  component: DashboardLayout,
+  name: "Comments",
+  children: [
+    {
+      path: "",
+      name: "List comments",
+      components: {default: ListCommentPage},
+      meta: {middleware: auth}
+    },
+    {
+      path: "/admin/comment/create",
+      name: "Create Post",
+      components: {default: CreateComment},
+      meta: {middleware: auth}
+    },
+    {
+      path: "/admin/comment/update/:id",
+      props: {default: true},
+      name: "Update Post",
+      components: {default: UpdateComment},
+      meta: {middleware: auth}
+    },
+    {
+      path: "/admin/comment/delete/:id",
+      props: {default: true},
+      name: "Delete Post",
+      components: {default: DeleteComment},
+      meta: {middleware: auth}
+    },
+  ]
+};
 let componentsMenu = {
   path: "/admin/components",
   component: DashboardLayout,
@@ -177,6 +214,7 @@ const routes = [
   componentsMenu,
   userMenu,
   postMenu,
+  commentMenu,
   authPages
 ];
 

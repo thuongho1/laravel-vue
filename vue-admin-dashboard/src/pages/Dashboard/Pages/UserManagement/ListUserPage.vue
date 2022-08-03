@@ -46,8 +46,8 @@
                   item.email
                 }}
               </md-table-cell>
-              <md-table-cell md-label="Created At" md-sort-by="created_at">{{
-                  item.created_at
+              <md-table-cell md-label="Created At" md-sort-by="createdAt">{{
+                  item.createdAt
                 }}
               </md-table-cell>
               <md-table-cell md-label="Actions">
@@ -123,7 +123,7 @@ export default {
     query: null,
 
     sortation: {
-      field: "created_at",
+      field: "createdAt",
       order: "asc",
     },
 
@@ -168,7 +168,7 @@ export default {
         {
           name: "Admin",
           email: "admin@jsonapi.com",
-          created_at: "2020-01-01",
+          createdAt: "2020-01-01",
         },
       ];
     },

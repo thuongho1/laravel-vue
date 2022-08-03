@@ -32,8 +32,8 @@ class Schema extends SchemaProvider
         return [
             'name' => $resource->name,
             'email' => $resource->email,
-            'created_at' => optional($resource->created_at)->format("Y-m-d H:i:s"),
-            'updated_at' => optional($resource->updated_at)->format("Y-m-d H:i:s"),
+            'createdAt' => optional($resource->created_at)->format("Y-m-d H:i:s"),
+            'updatedAt' => optional($resource->updated_at)->format("Y-m-d H:i:s"),
         ];
     }
 

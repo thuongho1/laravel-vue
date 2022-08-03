@@ -15,22 +15,23 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'content', 'post_id', 'author_id'
+        'content'
     ];
+
+    /**
+     * Get all of the owning commentable models.
+     */
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
 
     /**
      * Get the user that owns the post.
      */
-    public function author()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the post.
-     */
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
 }

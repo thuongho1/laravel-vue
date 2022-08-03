@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -21,10 +22,10 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->text(30),
             'content' => '<p>' . $this->faker->paragraph() . '</p>',
-            'author_id' => 1,
+            'user_id' => 1,
+            'status' => 1,
         ];
     }
-
 
 
 }

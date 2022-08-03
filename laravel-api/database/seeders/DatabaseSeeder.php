@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\Comment;
@@ -15,15 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-        DB::table('users')->truncate();
-        DB::table('posts')->truncate();
-        DB::table('comments')->truncate();
-        Schema::enableForeignKeyConstraints();
 
-        $this->call(UsersSeeder::class);
-        $this->call(PostsSeeder::class);
-        $this->call(CommentSeeder::class);
+        $this->call([
+            UserSeeder::class,
+            PostSeeder::class,
+        ]);
+
 
     }
 }
